@@ -1,0 +1,138 @@
+\section{Versionando seu código}
+
+\begin{slide}[method=direct]{Criando um repositório}
+	\begin{itemize}
+		\item{Para criar e inicializar um repositório, navegue até o diretorio onde vai ficar os arquivos do seu projeto e digite o comando:
+			\begin{lstlisting}[style=Bash]
+$ git init
+			\end{lstlisting}
+		Após executar o comando, deve aparecer uma mensagem semelhante a esta:
+		\begin{lstlisting}
+Initialized empty Git repository in /*/.git/
+		\end{lstlisting}
+		}
+		
+		\item{Com isso já temos um repositorio, vazio, do Git inicializado, atente que o sistema criou automaticamente uma pasta chamada .git ( em modo oculto )}
+	\end{itemize}
+\end{slide}
+
+\begin{slide}[method=direct]{Status do repositório}
+	\begin{itemize}
+		\item{Quando criamos ou adicionamos um arquivo na pasta onde foi inicializado o projeto o GIT não inclui automaticamente o novo arquivo, para isso é necessario ``rastrear'' o arquivo e adicionar ele, para isto, utilizamos o comando:
+			\begin{lstlisting}[style=Bash]
+$ git status
+			\end{lstlisting}
+			
+			O resultado do comando será algo semelhante a:
+			\begin{lstlisting}[basicstyle=\tiny]
+$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        Makefile
+        doc/
+        fonte1.c
+        fonte2.asm
+        
+        (...)
+\end{lstlisting}
+			}
+	\end{itemize}
+\end{slide}
+
+\begin{slide}[method=direct]{Rastreando arquivos}
+	\begin{itemize}
+	\item{Para que um arquivo passe a ser rastreado pelo Git, devemos executar o seguinte comando:
+		\begin{lstlisting}[style=Bash]
+$ git add <nome do arquivo>
+		\end{lstlisting}
+	       	
+	        Exemplo:
+	        \begin{lstlisting}[style=Bash]
+$ git add fonte2.asm
+	        \end{lstlisting}
+	        }
+	\item{Após eecutar o comando \textit{git status} iremos ver algo semelhante com}
+	\begin{lstlisting}[basicstyle=\tiny]
+On branch master
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   fonte2.asm
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        Makefile
+        (...)
+	\end{lstlisting}
+	\end{itemize}
+\end{slide}
+
+\begin{slide}[method=direct]{Gravando o arquivo no repo.}
+	\begin{itemize}
+	\item{Para gravarmos as mudanças no repositório, devemos executar o comando:
+	        \begin{lstlisting}[style=Bash]
+$ git commit -m ``Meu primeiro commit!!!''
+	        \end{lstlisting}
+	        Observe que o comando \textit{git commit} foi executado junto com o parâmetro \textit{-m}, que é utilizado para definir uma mensagem para o commit que você está submetendo ao servidor.
+	        \begin{itemize}
+	        \item{\textbf{A mensagem do commit deve ser muito clara, ao descrever quais são as modificações que você está enviando para o servidor!}}
+	        \end{itemize}
+	        Após executar o git commit, você verá:
+	        \begin{lstlisting}[basicstyle=\tiny]
+git commit -m "Meu primeiro commit!!!"
+[master (root-commit) ff932de] Meu primeiro commit!!!
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 fonte2.asm
+	         \end{lstlisting}
+	        }
+	\end{itemize}
+\end{slide}
+
+\begin{slide}[method=direct]{Alterando arquivos}
+	\begin{itemize}
+	\item{Se editarmos um arquivo já versionado pelo git, quando executamos o comando \textit{git status}, ele ira nos retornar o seguinte resultado:}
+	\begin{lstlisting}[basicstyle=\tiny]
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   fonte2.asm
+	\end{lstlisting}
+	\end{itemize}
+\end{slide}
+
+\begin{slide}[method=direct]{Verificando as alterações}
+	\begin{itemize}
+	\item{Podemos verificar o histórico das alterações gravadas no repositório com a seguinte linha de comando:
+	\begin{lstlisting}[style=Bash]
+$ git log
+	\end{lstlisting}
+	O resultado do comando vai ser parecido com:
+	\begin{lstlisting}[basicstyle=\tiny]
+$ git log
+commit 182279fb11c39d0830825fa0c75366c4a9905c1d
+Author: Alexandre <alebencz@gmail.com>
+Date:   Thu Mar 10 13:34:30 2016 -0300
+
+    Corre<C3><A7><C3><A3>o no fonte2.asm e adicionado
+    objeto para ser compilado pelo make
+
+commit ff932ded962e4d2029eba37a879d0886036ea600
+Author: Alexandre <alebencz@gmail.com>
+Date:   Thu Mar 10 13:11:13 2016 -0300
+
+    Meu primeiro commit!!!
+          \end{lstlisting}
+	}
+	\end{itemize}
+\end{slide}

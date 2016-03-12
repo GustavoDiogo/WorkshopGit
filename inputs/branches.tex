@@ -1,0 +1,118 @@
+\section{Se organizando com as branches}
+
+\begin{slide}[method=direct]{Trabalhando em paralelo}
+	\begin{itemize}
+	\item{Muitos sistemas de controle de versão permite trabalho em paralelo através de \textbf{branches}}
+	\item{Mas o que é uma Branch ?}
+	\begin{itemize}
+		\item{Uma \textbf{branch} é uma linha independente de desenvolvimento em que podemos enviar novas versões do código sem alterar as outras branches}
+	\end{itemize}
+	\end{itemize}
+\end{slide}
+
+\begin{slide}[method=direct]{Criando uma branch}
+	\begin{itemize}
+	\item{Para criar uma branch, basta executar o seguinte comando:
+		\begin{lstlisting}[style=Bash]
+$ git branch <nome da nova branch>
+		\end{lstlisting}
+		A execução deste comando não retorna nenhuma resposta, então, para listartmos as branchs existentes, utilizamos o comando:
+		\begin{lstlisting}[style=Bash]
+$ git branch
+		\end{lstlisting}
+		O resultado deste comando vai retornar a lista de todas as branchs existentes par ao projeto
+		\begin{lstlisting}[style=Bash]
+$ git branch
+  current
+* master
+                   \end{lstlisting}
+	         }
+	\end{itemize}
+\end{slide}
+
+\begin{slide}[method=direct]{Trocando de branch}
+	\begin{itemize}
+	\item{Para trocarmos de uma branch para outra, executamos o seguinte comando:
+	\begin{lstlisting}[style=Bash]
+$ git checkout <nome da nova branch>
+	\end{lstlisting}
+	Quando executado este comando, deve aparecer como resposta algo como:
+	\begin{lstlisting}[style=Bash]
+Switched to branch 'current'
+	\end{lstlisting}
+	}
+	\end{itemize}
+\end{slide}
+
+\begin{slide}[method=direct]{Criar e trocar para uma nova Branch}
+	\begin{itemize}
+	\item{Para uma questão de facilidade, o GIT fornece uma opção para criar e autoamticamente trocar de branch, quando executado o comando de checkout, o parametro \textit{-b} deve ser passado antes do nome da nova branch, executando o mesmo comando para trocar de uma branch.
+	\begin{lstlisting}[style=Bash]
+$ git checkout -b <nome da nova branch>
+	\end{lstlisting}
+	Após executar este comando, a saida será:
+	\begin{lstlisting}[style=Bash]
+$ git checkout -b v1.0
+M       fonte2.asm
+Switched to a new branch 'v1.0'
+	\end{lstlisting}
+	}
+	\end{itemize}
+\end{slide}
+
+\begin{slide}[method=direct]{Commitando para uma branch}
+	\begin{itemize}
+	\item{Para commitar para uma nova branch, no momento de executar o comando \textit{push}, deve ser informado o nome da branch para qual o commit vai ser enviado:
+	\begin{lstlisting}[style=Bash]
+$ git push origin v1.0
+	\end{lstlisting}
+	Após executado o comando, o resultado será algo como:
+	\begin{lstlisting}[style=Bash,basicstyle=\tiny]
+$ git push origin v1.0
+Counting objects: 4, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (4/4), 385 bytes | 0 bytes/s, done.
+Total 4 (delta 0), reused 0 (delta 0)
+To https://github.com/bencz/RepositorioDeEstudo.git
+ * [new branch]      v1.0 -> v1.0
+ 	\end{lstlisting}
+	}
+	\end{itemize}
+\end{slide}
+
+\begin{slide}[method=direct]{Fazendo merge}
+	\begin{itemize}
+	\item{Para juntarmos as alterações feita em outras branchs com a branch \textit{master}, podemos utilizar o seguinte comando: ( Lembrando que, você deve estar na branch \textit{master} para fazer o merge com os dados da branch v1.0
+	\begin{lstlisting}[style=Bash,basicstyle=\tiny]
+$ git merge v1.0 -m ``Fazendo merge com a branch v1.0''
+	\end{lstlisting}
+	O resultado da execução deste comando será:
+	\begin{lstlisting}[style=Bash,basicstyle=\tiny]
+$ git merge v1.0 -m "Fazendo merge com a branch v1.0"
+Updating 182279f..456bc06
+Fast-forward (no commit created; -m option ignored)
+ fonte1.c   | 3 +++
+ fonte2.asm | 2 ++
+ 2 files changed, 5 insertions(+)
+ create mode 100644 fonte1.c
+ 	\end{lstlisting}
+ 	Feito isso, basta executar o comando \textit{git push origin master} e os dados vão estar mesclados
+	}
+	\end{itemize}
+\end{slide}
+
+\begin{slide}[method=direct]{Deletando uma branch}
+	\begin{itemize}
+	\item{Para deletarmos uma branch, devemos utilizar a opção \textit{-d} junto ao comando \textit{git branch}.
+	\begin{lstlisting}[style=Bash]
+$ git branch -d v1.0
+	\end{lstlisting}
+	O resultado da execução deste comando será:
+	\begin{lstlisting}[style=Bash]
+$ git branch -d v1.0
+Deleted branch v1.0 (was 456bc06).
+	\end{lstlisting}
+	}
+	\end{itemize}
+\end{slide}

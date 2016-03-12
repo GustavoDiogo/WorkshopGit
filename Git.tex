@@ -1,0 +1,62 @@
+\documentclass[
+  size=12pt,
+  style=sailor,
+  paper=screen,
+%% Try me!
+%% orient=portrait,
+%%  mode=handout,
+%%  display=slidesnotes,
+  blackslide,
+  nopagebreaks,
+  fleqn
+]{powerdot}
+
+\usepackage{cmap}			% Mapear caracteres especiais no PDF
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[russian, english, brazil]{babel}
+\usepackage{hyperref}
+
+\lstdefinestyle{Bash}
+{language=bash,
+keywordstyle=\color{blue},
+basicstyle=\ttfamily,
+morekeywords={peter@kbpet},
+alsoletter={:~$},
+morekeywords=[2]{peter@kbpet:},
+keywordstyle=[2]{\color{red}},
+literate={\$}{{\textcolor{red}{\$}}}1 
+         {:}{{\textcolor{red}{:}}}1
+         {~}{{\textcolor{red}{\textasciitilde}}}1,
+}
+
+\newcommand{\oops}[1]{\textit{#1}}
+
+\title{Git \\ \& \\ GitHub}
+\author{Alexandre Savelli Bencz}
+
+\pdsetup{
+  lf=Git \& GitHub,
+  cf=\today,
+  %rf=for powerdot,
+  trans=Wipe,
+  theslide=slide~\arabic{slide},
+  list={itemsep=6pt}
+}
+
+\begin{document}
+
+\maketitle
+
+\input{./inputs/historia.tex}
+\input{./inputs/inst_e_config.tex}
+\input{./inputs/vers_cod.tex}
+\input{./inputs/github.tex}
+\input{./inputs/branches.tex}
+\input{./inputs/referencias.tex}
+
+\end{document}
+\endinput
